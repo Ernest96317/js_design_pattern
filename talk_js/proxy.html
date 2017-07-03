@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  var Flower = function (type, price) {
+    this.type = type;
+    this.price = price
+  }
+
+  Flower.prototype.buy = function(){
+    console.log('您购买了' + this.type +','+ '花了' + this.price + '元');
+  }
+
+  var flower = new Flower('rose','99');
+  flower.buy();
+
+  var E = {
+    name: 'Ernest',
+    age: 16,
+    city: '宜春',
+    sendFlower: function (target) {
+      target.receiverFlower();
+    }
+  }
+
+  var Q = {
+    name: '泡泡',
+    age: 16,
+    city: '南昌',
+    receiverFlower: function (flower) {
+    console.log( '收到了花');
+  },
+    listenGoodMood: function (fn) {
+      console.log('心情不好');
+      setTimeout(function () {
+        console.log('心情好了，可以约');
+        fn();
+      },1000)
+    }
+  }
+
+  var H = {
+    name: '小红',
+    nickname: '送花使者',
+    receiverFlower: function (flower) {
+      Q.listenGoodMood(function () {
+        Q.receiverFlower();
+      });
+    }
+  }
+
+  E.sendFlower(H);
+
+  </script>
+</body>
+</html>
